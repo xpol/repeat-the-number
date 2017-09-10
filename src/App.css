@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 80s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  color: white;
+  width: 100vw;
+  height: 32vh;
+}
+
+.count {
+  font-style: italic;
+  color: #fff;
+  text-align: right;
+  margin: 0 5vw;
+}
+
+.digits {
+  font-size: 8vh;
+  color: #222;
+  overflow-y: scroll;
+  width: 100vw;
+  height: 57vh;
+  padding: 3.5vh 0;
+  box-sizing: border-box;
+}
+
+.buttons {
+  width: 100vw;
+  height: 15vw;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.button {
+
+  width: 33%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.button {
+  background-color: #222;
+  color: #fff;
+}
+
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
