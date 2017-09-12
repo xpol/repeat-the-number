@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import cx from 'classnames'
 import logo from './logo.svg';
 import './App.css';
 
@@ -25,26 +26,28 @@ class App extends Component {
   state = {digits: []}
 
   componentDidMount() {
-    const digits = []
-
-    for (var i = 0; i < 3; i++) {
-      digits.push(randomDigit())
-    }
-
-    this.setState({digits})
+    this.reset()
   }
 
   reset = () => {
-    this.setState({digits: []})
+    const digits = []
+    for (var i = 0; i < 3; i++) {
+      digits.push(randomDigit())
+    }
+    this.setState({digits})
   }
 
   addDigit = () => {
+    if (this.state.digits.length >= 80) return
+
     this.setState(({digits}) => (
       {digits: [...digits, randomDigit()]}
     ))
   }
 
   removeDigit = () => {
+    if (this.state.digits.length <= 3) return
+
     this.setState(({digits}) => (
       {digits: digits.slice(0, digits.length - 1)}
     ))
@@ -54,15 +57,16 @@ class App extends Component {
     const {digits} = this.state
 
     const grouped = group(digits, 5)
+    console.log(grouped.length)
     return (
       <div className="App">
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h2>Repeat the Number</h2>
+          <h2 className={cx({hidden:  grouped.length > 5})}>Repeat the Number</h2>
           <div className="count">{digits.length}</div>
         </div>
-        <div className="digits">
-          {grouped.map((g, i) => <div key={i}>
+        <div className={cx("digits", {s: grouped.length > 5, xs: grouped.length > 9, xxs: grouped.length > 11})}>
+          {grouped.map((g, i) => <div className={cx("group")} key={i}>
             {g.map((d, k) => <span key={k}>{d}</span>)}
           </div>)}
         </div>
